@@ -60,15 +60,15 @@ CA代理<span style="color:red;">(应用后立刻生效)</span>: 启用的配置
 
 > 选择 CA 的代理配置文件。插件会修改 /boot/config/plugins/community.applications/proxy.cfg
 
-emhttp代理<span style="color:red;">(应用后需重启生效)</span>: 启用的配置文件:
-: <select name="emhttp_active_config">
-  <?=mk_option($cfg['emhttp_active_config'], "-1", "不走代理(系统默认)") ?>
-  <?=mk_option($cfg['emhttp_active_config'], "1", "走代理: emhttp配置文件1") ?>
-  <?=mk_option($cfg['emhttp_active_config'], "2", "走代理: emhttp配置文件2") ?>
-  <?=mk_option($cfg['emhttp_active_config'], "3", "走代理: emhttp配置文件3") ?>
+系统级代理<span style="color:red;">(应用后需重启生效)</span>: 启用的配置文件:
+: <select name="sys_active_config">
+  <?=mk_option($cfg['sys_active_config'], "-1", "不走代理(系统默认)") ?>
+  <?=mk_option($cfg['sys_active_config'], "1", "走代理: 系统级配置文件1") ?>
+  <?=mk_option($cfg['sys_active_config'], "2", "走代理: 系统级配置文件2") ?>
+  <?=mk_option($cfg['sys_active_config'], "3", "走代理: 系统级配置文件3") ?>
   </select>
 
-> 选择 emhttp 的代理配置文件。插件会修改 /boot/config/go
+> 选择系统级代理配置文件。插件会修改 /boot/config/go<br>1. 向 /etc/profile 添加 http_proxy 与 https_proxy 环境变量<br>2. 向 /root/.wgetrc 写入代理配置并修改超时时长<br>
 
 &nbsp;
 : <input type="submit" value="_(Apply)_">
@@ -144,58 +144,58 @@ emhttp代理<span style="color:red;">(应用后需重启生效)</span>: 启用�
 <span style="color:red;display:<?=($cfg['ca_active_config']==3)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
 </form>
 
-<!--下面是emhttp-->
+<!--下面是sys-->
 
-<div id="title"><span class="left">_(emhttp代理 配置文件1)_</span></div>
-<form markdown="1" name="emhttp_config_1" method="POST" action="/update.php"  target="progressFrame">
+<div id="title"><span class="left">_(系统级代理 配置文件1)_</span></div>
+<form markdown="1" name="sys_config_1" method="POST" action="/update.php"  target="progressFrame">
 <input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
 代理 Url:
-: <input type="text" name="emhttp_config_1_url" value="<?=$cfg['emhttp_config_1_url']?>" placeholder="http://&lt;proxyserver&gt;:&lt;port&gt;">
+: <input type="text" name="sys_config_1_url" value="<?=$cfg['sys_config_1_url']?>" placeholder="http://&lt;proxyserver&gt;:&lt;port&gt;">
 
 >  比如 http://192.168.31.111:7890 或者 http://用户名:密码@192.168.31.111:7890
 
 备注:
-: <input type="text" name="emhttp_config_1_note" value="<?=$cfg['emhttp_config_1_note']?>" placeholder="">
+: <input type="text" name="sys_config_1_note" value="<?=$cfg['sys_config_1_note']?>" placeholder="">
 
 >  可选，帮助记忆这个配置文件的用途与使用场景
 
 &nbsp;
-: <input type="submit" value="_(保存“emhttp代理 配置文件1”)_" <?=($cfg['emhttp_active_config']==1)?"disabled":""?>>
-<span style="color:red;display:<?=($cfg['emhttp_active_config']==1)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
+: <input type="submit" value="_(保存“系统级代理 配置文件1”)_" <?=($cfg['sys_active_config']==1)?"disabled":""?>>
+<span style="color:red;display:<?=($cfg['sys_active_config']==1)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
 </form>
 
-<div id="title"><span class="left">_(emhttp代理 配置文件2)_</span></div>
-<form markdown="1" name="emhttp_config_2" method="POST" action="/update.php"  target="progressFrame">
+<div id="title"><span class="left">_(系统级代理 配置文件2)_</span></div>
+<form markdown="1" name="sys_config_2" method="POST" action="/update.php"  target="progressFrame">
 <input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
 代理 Url:
-: <input type="text" name="emhttp_config_2_url" value="<?=$cfg['emhttp_config_2_url']?>" placeholder="http://&lt;proxyserver&gt;:&lt;port&gt;">
+: <input type="text" name="sys_config_2_url" value="<?=$cfg['sys_config_2_url']?>" placeholder="http://&lt;proxyserver&gt;:&lt;port&gt;">
 
 >  比如 http://192.168.31.111:7890 或者 http://用户名:密码@192.168.31.111:7890
 
 备注:
-: <input type="text" name="emhttp_config_2_note" value="<?=$cfg['emhttp_config_2_note']?>" placeholder="">
+: <input type="text" name="sys_config_2_note" value="<?=$cfg['sys_config_2_note']?>" placeholder="">
 
 >  可选，帮助记忆这个配置文件的用途与使用场景
 
 &nbsp;
-: <input type="submit" value="_(保存“emhttp代理 配置文件2”)_" <?=($cfg['emhttp_active_config']==2)?"disabled":""?>>
-<span style="color:red;display:<?=($cfg['emhttp_active_config']==2)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
+: <input type="submit" value="_(保存“系统级代理 配置文件2”)_" <?=($cfg['sys_active_config']==2)?"disabled":""?>>
+<span style="color:red;display:<?=($cfg['sys_active_config']==2)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
 </form>
 
-<div id="title"><span class="left">_(emhttp代理 配置文件3)_</span></div>
-<form markdown="1" name="emhttp_config_3" method="POST" action="/update.php"  target="progressFrame">
+<div id="title"><span class="left">_(系统级代理 配置文件3)_</span></div>
+<form markdown="1" name="sys_config_3" method="POST" action="/update.php"  target="progressFrame">
 <input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
 代理 Url:
-: <input type="text" name="emhttp_config_3_url" value="<?=$cfg['emhttp_config_3_url']?>" placeholder="http://&lt;proxyserver&gt;:&lt;port&gt;">
+: <input type="text" name="sys_config_3_url" value="<?=$cfg['sys_config_3_url']?>" placeholder="http://&lt;proxyserver&gt;:&lt;port&gt;">
 
 >  比如 http://192.168.31.111:7890 或者 http://用户名:密码@192.168.31.111:7890
 
 备注:
-: <input type="text" name="emhttp_config_3_note" value="<?=$cfg['emhttp_config_3_note']?>" placeholder="">
+: <input type="text" name="sys_config_3_note" value="<?=$cfg['sys_config_3_note']?>" placeholder="">
 
 >  可选，帮助记忆这个配置文件的用途与使用场景
 
 &nbsp;
-: <input type="submit" value="_(保存“emhttp代理 配置文件3”)_" <?=($cfg['emhttp_active_config']==3)?"disabled":""?>>
-<span style="color:red;display:<?=($cfg['emhttp_active_config']==3)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
+: <input type="submit" value="_(保存“系统级代理 配置文件3”)_" <?=($cfg['sys_active_config']==3)?"disabled":""?>>
+<span style="color:red;display:<?=($cfg['sys_active_config']==3)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
 </form>

@@ -3,7 +3,7 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "proxy.editor">
   <!ENTITY author    "ludoux">
-  <!ENTITY version   "2022.12.21b">
+  <!ENTITY version   "2022.12.22a">
   <!ENTITY minosver      "6.10.0">
   <!ENTITY launch    "Settings/ProxyEditor">
   <!ENTITY branch    "master">
@@ -11,7 +11,7 @@
   <!ENTITY pluginURL "&gitURL;/&name;.plg">
   <!ENTITY plgPATH   "/boot/config/plugins/&name;">
   <!ENTITY plgNAME   "&name;-&version;">
-  <!ENTITY MD5       "4c42f201c16d0a9bb4f81536004ecda3">
+  <!ENTITY MD5       "015c6022be0ddbf0920cfd97b5846d4b">
 ]>
 
 <PLUGIN  name="&name;"
@@ -34,8 +34,6 @@
     <!-- 安装前 -->
     <FILE Run="/bin/bash">
         <INLINE>
-        # Remove legacy config file
-        rm -f &plgPATH;/&name;.cfg
         </INLINE>
     </FILE>
     
@@ -48,8 +46,6 @@
     <!-- 安装后 -->
     <FILE Run="/bin/bash">
         <INLINE>
-            
-
             echo ""
             echo "-----------------------------------------------------------"
             echo " &name; v &version; 安装成功。在 设置-用户实用程序 下即可访问此插件"
@@ -71,12 +67,14 @@
             rm -rf /usr/local/emhttp/plugins/&name;
 
             rm -f /boot/config/plugins/community.applications/proxy.cfg
+            # restore /boot/config/go
             sed -i "/\/usr\/local\/sbin\/emhttp &amp;/c\/usr\/local\/sbin\/emhttp &amp;" /boot/config/go
+            sed -i "/# Added by ProxyEditor/d" /boot/config/go
             echo ""
             echo "-----------------------------------------------------------"
             echo " &name; 已经卸载成功."
             echo " CA 代理配置文件 proxy.cfg 已删除"
-            echo " emhttp配置 /boot/config/go 已复原"
+            echo " 系统级代理配置文件 /boot/config/go 已复原"
             echo " Version: &version;"
             echo "-----------------------------------------------------------"
             echo ""
