@@ -1,0 +1,201 @@
+Menu="Utilities"
+Title="Proxy Editor"
+Icon="paper-plane"
+Tag="paper-plane"
+---
+<?PHP
+/* Copyright 2022, Lu Chang
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 2,
+ * as published by the Free Software Foundation.
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ */
+?>
+<?
+$plugin = 'proxy.editor';
+$cfg = parse_plugin_cfg('proxy.editor');
+?>
+<style>
+</style>
+<script type="text/javascript">
+    function box() {
+        openBox("/plugins/proxy.editor/scripts/view_proxy_files.sh","查看代理配置文件",800,1200,true);
+    };
+    $(function() {
+        $('.about').tooltipster({
+		trigger: 'custom',
+		triggerOpen: {mouseenter:true},
+		triggerClose:{click:true,scroll:true,mouseleave:true},
+		contentAsHTML: true,
+		maxWidth:550,
+		minWidth:550,
+        minHeight: 700,
+		animation: 'grow',
+		interactive: true,
+		viewportAware: true,
+		functionBefore: function(instance,helper) {
+			var origin = $(helper.origin);
+			var myID = origin.attr('id');
+			instance.content("查看帮助与反馈报 bug 请来论坛回楼: <a href='https://gitee.com/ludoux/unraid-proxy-editor' target='_blank'>Unraid 坛帖</a><br>查看源代码、下载插件可以来 <a href='https://gitee.com/ludoux/unraid-proxy-editor' target='_blank'>Gitee</a> 或 <a href='https://github.com/ludoux/unraid-proxy-editor' target='_blank'>GitHub</a><br>by ludoux <a href='https://www.luu.moe/115' target='_blank'>luu.moe</a><br><center><img src='/plugins/proxy.editor/images/alipay.png' height=128px>");
+		}
+	});  
+    })
+</script>
+<a class='about' href='https://crontab.guru/' target='_blank'>帮助/反馈/关于/捐赠</a>
+<!-- update.php is found at /usr/local/emhttp/update.php -->
+<form markdown="1" name="active_config" method="POST" action="/update.php"  target="progressFrame">
+<input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
+<!-- PHP to execute after exiting this file but before handing off to update.php -->
+<input type="hidden" name="#include" value="/plugins/proxy.editor/include/try.php">
+CA代理<span style="color:red;">(应用后立刻生效)</span>: 启用的配置文件:
+: <select name="ca_active_config">
+  <?=mk_option($cfg['ca_active_config'], "-1", "不走代理(系统默认)") ?>
+  <?=mk_option($cfg['ca_active_config'], "1", "走代理: CA配置文件1") ?>
+  <?=mk_option($cfg['ca_active_config'], "2", "走代理: CA配置文件2") ?>
+  <?=mk_option($cfg['ca_active_config'], "3", "走代理: CA配置文件3") ?>
+  </select>
+
+> 选择 CA 的代理配置文件。插件会修改 /boot/config/plugins/community.applications/proxy.cfg
+
+emhttp代理<span style="color:red;">(应用后需重启生效)</span>: 启用的配置文件:
+: <select name="emhttp_active_config">
+  <?=mk_option($cfg['emhttp_active_config'], "-1", "不走代理(系统默认)") ?>
+  <?=mk_option($cfg['emhttp_active_config'], "1", "走代理: emhttp配置文件1") ?>
+  <?=mk_option($cfg['emhttp_active_config'], "2", "走代理: emhttp配置文件2") ?>
+  <?=mk_option($cfg['emhttp_active_config'], "3", "走代理: emhttp配置文件3") ?>
+  </select>
+
+> 选择 emhttp 的代理配置文件。插件会修改 /boot/config/go
+
+&nbsp;
+: <input type="submit" value="_(Apply)_">
+<input type="button" value='_(Done)_' onclick="done()">
+<input type="button" value='查看' onclick="box()" />
+</form>
+<div id="title"><span class="left">_(CA代理 配置文件1)_</span></div>
+<form markdown="1" name="ca_config_1" method="POST" action="/update.php"  target="progressFrame">
+<input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
+代理地址:
+: <input type="text" name="ca_config_1_addr" value="<?=$cfg['ca_config_1_addr']?>" placeholder="http://&lt;address&gt;">
+
+>  比如 socks5://127.0.0.1 或者 http://192.168.31.111
+
+代理端口:
+: <input type="number" name="ca_config_1_port" value="<?=$cfg['ca_config_1_port']?>" placeholder="&lt;port&gt;">
+
+>  比如 7890
+
+备注:
+: <input type="text" name="ca_config_1_note" value="<?=$cfg['ca_config_1_note']?>" placeholder="">
+
+>  可选，帮助记忆这个配置文件的用途与使用场景
+
+&nbsp;
+: <input type="submit" value="_(保存“CA代理 配置文件1”)_" <?=($cfg['ca_active_config']==1)?"disabled":""?>>
+<span style="color:red;display:<?=($cfg['ca_active_config']==1)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
+</form>
+
+<div id="title"><span class="left">_(CA代理 配置文件2)_</span></div>
+<form markdown="1" name="ca_config_2" method="POST" action="/update.php"  target="progressFrame">
+<input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
+代理地址:
+: <input type="text" name="ca_config_2_addr" value="<?=$cfg['ca_config_2_addr']?>" placeholder="http://&lt;address&gt;">
+
+>  比如 socks5://127.0.0.1 或者 http://192.168.31.111
+
+代理端口:
+: <input type="number" name="ca_config_2_port" value="<?=$cfg['ca_config_2_port']?>" placeholder="&lt;port&gt;">
+
+>  比如 7890
+
+备注:
+: <input type="text" name="ca_config_2_note" value="<?=$cfg['ca_config_2_note']?>" placeholder="">
+
+>  可选，帮助记忆这个配置文件的用途与使用场景
+
+&nbsp;
+: <input type="submit" value="_(保存“CA代理 配置文件2”)_" <?=($cfg['ca_active_config']==2)?"disabled":""?>>
+<span style="color:red;display:<?=($cfg['ca_active_config']==2)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
+</form>
+
+<div id="title"><span class="left">_(CA代理 配置文件3)_</span></div>
+<form markdown="1" name="ca_config_3" method="POST" action="/update.php"  target="progressFrame">
+<input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
+代理地址:
+: <input type="text" name="ca_config_3_addr" value="<?=$cfg['ca_config_3_addr']?>" placeholder="http://&lt;address&gt;">
+
+>  比如 socks5://127.0.0.1 或者 http://192.168.31.111
+
+代理端口:
+: <input type="number" name="ca_config_3_port" value="<?=$cfg['ca_config_3_port']?>" placeholder="&lt;port&gt;">
+
+>  比如 7890
+
+备注:
+: <input type="text" name="ca_config_3_note" value="<?=$cfg['ca_config_3_note']?>" placeholder="">
+
+>  可选，帮助记忆这个配置文件的用途与使用场景
+
+&nbsp;
+: <input type="submit" value="_(保存“CA代理 配置文件3”)_" <?=($cfg['ca_active_config']==3)?"disabled":""?>>
+<span style="color:red;display:<?=($cfg['ca_active_config']==3)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
+</form>
+
+<!--下面是emhttp-->
+
+<div id="title"><span class="left">_(emhttp代理 配置文件1)_</span></div>
+<form markdown="1" name="emhttp_config_1" method="POST" action="/update.php"  target="progressFrame">
+<input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
+代理 Url:
+: <input type="text" name="emhttp_config_1_url" value="<?=$cfg['emhttp_config_1_url']?>" placeholder="http://&lt;proxyserver&gt;:&lt;port&gt;">
+
+>  比如 http://192.168.31.111:7890 或者 http://用户名:密码@192.168.31.111:7890
+
+备注:
+: <input type="text" name="emhttp_config_1_note" value="<?=$cfg['emhttp_config_1_note']?>" placeholder="">
+
+>  可选，帮助记忆这个配置文件的用途与使用场景
+
+&nbsp;
+: <input type="submit" value="_(保存“emhttp代理 配置文件1”)_" <?=($cfg['emhttp_active_config']==1)?"disabled":""?>>
+<span style="color:red;display:<?=($cfg['emhttp_active_config']==1)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
+</form>
+
+<div id="title"><span class="left">_(emhttp代理 配置文件2)_</span></div>
+<form markdown="1" name="emhttp_config_2" method="POST" action="/update.php"  target="progressFrame">
+<input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
+代理 Url:
+: <input type="text" name="emhttp_config_2_url" value="<?=$cfg['emhttp_config_2_url']?>" placeholder="http://&lt;proxyserver&gt;:&lt;port&gt;">
+
+>  比如 http://192.168.31.111:7890 或者 http://用户名:密码@192.168.31.111:7890
+
+备注:
+: <input type="text" name="emhttp_config_2_note" value="<?=$cfg['emhttp_config_2_note']?>" placeholder="">
+
+>  可选，帮助记忆这个配置文件的用途与使用场景
+
+&nbsp;
+: <input type="submit" value="_(保存“emhttp代理 配置文件2”)_" <?=($cfg['emhttp_active_config']==2)?"disabled":""?>>
+<span style="color:red;display:<?=($cfg['emhttp_active_config']==2)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
+</form>
+
+<div id="title"><span class="left">_(emhttp代理 配置文件3)_</span></div>
+<form markdown="1" name="emhttp_config_3" method="POST" action="/update.php"  target="progressFrame">
+<input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
+代理 Url:
+: <input type="text" name="emhttp_config_3_url" value="<?=$cfg['emhttp_config_3_url']?>" placeholder="http://&lt;proxyserver&gt;:&lt;port&gt;">
+
+>  比如 http://192.168.31.111:7890 或者 http://用户名:密码@192.168.31.111:7890
+
+备注:
+: <input type="text" name="emhttp_config_3_note" value="<?=$cfg['emhttp_config_3_note']?>" placeholder="">
+
+>  可选，帮助记忆这个配置文件的用途与使用场景
+
+&nbsp;
+: <input type="submit" value="_(保存“emhttp代理 配置文件3”)_" <?=($cfg['emhttp_active_config']==3)?"disabled":""?>>
+<span style="color:red;display:<?=($cfg['emhttp_active_config']==3)?"inline":"none"?>"><b>此配置文件已启用，无法修改。请先指定并启用其它配置文件。</b></span>
+</form>

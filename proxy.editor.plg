@@ -1,0 +1,83 @@
+<?xml version='1.0' standalone='yes'?>
+
+<!DOCTYPE PLUGIN [
+  <!ENTITY name      "proxy.editor">
+  <!ENTITY author    "ludoux">
+  <!ENTITY version   "2022.12.21">
+  <!ENTITY minosver      "6.10.0">
+  <!ENTITY launch    "Settings/ProxyEditor">
+  <!ENTITY branch    "master">
+  <!ENTITY gitURL    "https://raw.githubusercontent.com/ludoux/unraid-proxy-editor/&branch;">
+  <!ENTITY pluginURL "&gitURL;/&name;.plg">
+  <!ENTITY plgPATH   "/boot/config/plugins/&name;">
+  <!ENTITY MD5       "MMMMMMMMMMMDDDDDDDDDDDDD5555555555">
+]>
+
+<PLUGIN  name="&name;"
+         author="&author;"
+         version="&version;"
+         pluginURL="&pluginURL;"
+         support="https://forums.unraid.net/topic/74525-plugin-network-stat/"
+         launch="&launch;"
+         icon="paper-plane"
+         min="&minosver;">
+
+    <CHANGES>
+    ##&name;
+
+    ###2022.12.21 - Initial Release
+    打包第一版
+
+    </CHANGES>
+
+    <!-- 安装前 -->
+    <FILE Run="/bin/bash">
+        <INLINE>
+        # Remove legacy config file
+        rm -f &plgPATH;/&name;.cfg
+        </INLINE>
+    </FILE>
+    
+    <!-- 下载并安装插件包 -->
+    <FILE Name="&plgPATH;/&plgNAME;.txz" Run="upgradepkg --install-new --reinstall">>
+        <URL>&gitURL;/archive/&plgNAME;.txz</URL>
+        <MD5>&MD5;</MD5>
+    </FILE>
+
+    <!-- 安装后 -->
+    <FILE Run="/bin/bash">
+        <INLINE>
+            
+
+            echo ""
+            echo "-----------------------------------------------------------"
+            echo " &name; v &version; 安装成功。在 设置-用户实用程序 下即可访问此插件"
+            echo " 请注意，未来插件卸载时会将本插件和系统代理配置信息清理掉，即卸载后便恢复直连。"
+            echo " 插件主页面的【帮助/反馈/关于/捐赠】内有论坛链接，建议初次上手用户前去阅读"
+            echo " Copyright 2022, ludoux"
+            echo "-----------------------------------------------------------"
+            echo ""
+        </INLINE>
+    </FILE>
+
+    <!-- 卸载脚本 -->
+    <FILE Run="/bin/bash" Method="remove">
+        <INLINE>
+            rm -rf &plgPATH;
+            removepkg &name;
+            rm -f /boot/config/plugins/community.applications/proxy.cfg
+            sed -i "/\/usr\/local\/sbin\/emhttp &/c\/usr\/local\/sbin\/emhttp &" /boot/config/go
+            echo ""
+            echo "-----------------------------------------------------------"
+            echo " &name; 已经卸载成功."
+            echo " CA 代理配置文件 proxy.cfg 已删除"
+            echo " emhttp配置 /boot/config/go 已复原"
+            echo " Version: &version;"
+            echo "-----------------------------------------------------------"
+            echo ""
+
+            exit 0
+        </INLINE>
+    </FILE>
+
+</PLUGIN>
