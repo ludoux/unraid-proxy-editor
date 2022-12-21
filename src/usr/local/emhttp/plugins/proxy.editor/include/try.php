@@ -46,9 +46,9 @@ if ($_POST['sys_active_config'] == "-1") {
     exec("echo \"" . "$intext" . " # Added by ProxyEditor\" >> /boot/config/go");
     $intext = "echo " . "\\\"" . "use_proxy=yes" . "\\\" >> /root/.wgetrc";
     exec("echo \"" . "$intext" . " # Added by ProxyEditor\" >> /boot/config/go");
-    $intext = "echo " . "\\\"" . "export http_proxy=" . "\\\"" . "$url" . "\\\" >> /root/.wgetrc";
+    $intext = "echo " . "\\\"" . "http_proxy=" . "$url" . "\\\" >> /root/.wgetrc";
     exec("echo \"" . "$intext" . " # Added by ProxyEditor\" >> /boot/config/go");
-    $intext = "echo " . "\\\"" . "export https_proxy=" . "\\\"" . "$url" . "\\\" >> /root/.wgetrc";
+    $intext = "echo " . "\\\"" . "https_proxy=" . "$url" . "\\\" >> /root/.wgetrc";
     exec("echo \"" . "$intext" . " # Added by ProxyEditor\" >> /boot/config/go");
 }
 ?>
