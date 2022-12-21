@@ -36,9 +36,9 @@ if ($_POST['sys_active_config'] == "-1") {
     exec("sed -i \"/$emhttpdefault/c$emhttpreplace\" /boot/config/go");
     
     # /boot/config/go: set http(s)_proxy in /etc/profile
-    $intext = "echo " . "\\\"" . "export http_proxy=" . "\\\\" . "\\\"" . "$url" . "\\\\" . "\\\" >> /etc/profile";
+    $intext = "echo " . "\\\"" . "export http_proxy=" . "\\\\" . "\\\"" . "$url" . "\\\\" . "\\\"" . "\\\" >> /etc/profile";
     exec("echo \"" . "$intext" . " # Added by ProxyEditor\" >> /boot/config/go");
-    $intext = "echo " . "\\\"" . "export https_proxy=" . "\\\\" . "\\\"" . "$url" . "\\\\" . "\\\" >> /etc/profile";
+    $intext = "echo " . "\\\"" . "export https_proxy=" . "\\\\" . "\\\"" . "$url" . "\\\\" . "\\\"" . "\\\" >> /etc/profile";
     exec("echo \"" . "$intext" . " # Added by ProxyEditor\" >> /boot/config/go");
 
     # /boot/config/go: set wget wait time and proxy settings in /root/.wgetrc
