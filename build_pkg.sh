@@ -25,6 +25,7 @@ if command -v makepkg > /dev/null; then
     echo "Setting permission..."
     find . -type d -print0 | xargs -0 chmod 755 
     find . -type f -print0 | xargs -0 chmod 644
+    find . -type f -iname "*.sh" -print0 | xargs -0 chmod a+x
 
     echo "Cleaning up .DS_Store files in source code directory first..."
     find . -name '.DS_Store' -type f -delete
