@@ -10,7 +10,8 @@
   <!ENTITY gitURL    "https://raw.githubusercontent.com/ludoux/unraid-proxy-editor/&branch;">
   <!ENTITY pluginURL "&gitURL;/&name;.plg">
   <!ENTITY plgPATH   "/boot/config/plugins/&name;">
-  <!ENTITY MD5       "MMMMMMMMMMMDDDDDDDDDDDDD5555555555">
+  <!ENTITY plgNAME   "&name;-&version;">
+  <!ENTITY MD5       "3e2a47439a091f09bbc6f73c4f6697dc">
 ]>
 
 <PLUGIN  name="&name;"
@@ -40,7 +41,7 @@
     
     <!-- 下载并安装插件包 -->
     <FILE Name="&plgPATH;/&plgNAME;.txz" Run="upgradepkg --install-new --reinstall">>
-        <URL>&gitURL;/archive/&plgNAME;.txz</URL>
+        <URL>&gitURL;/archives/&plgNAME;.txz</URL>
         <MD5>&MD5;</MD5>
     </FILE>
 

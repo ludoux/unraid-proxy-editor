@@ -22,11 +22,15 @@ if command -v makepkg > /dev/null; then
     # Move to directory containing files and folders going into the package
     cd "$2"
 
+    echo "Setting permission..."
+    find . -type d -print0 | xargs -0 chmod 755 
+    find . -type f -print0 | xargs -0 chmod 644
+
     echo "Cleaning up .DS_Store files in source code directory first..."
     find . -name '.DS_Store' -type f -delete
 
     echo "Creating Slackware package $file_name"
-    makepkg --linkadd y --chown n "$file_name"
+    makepkg -l y -c n  "$file_name"
 
     echo "MD5 of $file_name is $(md5sum $file_name | awk '{print $1}')"
 else
