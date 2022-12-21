@@ -65,9 +65,12 @@
     <FILE Run="/bin/bash" Method="remove">
         <INLINE>
             rm -rf &plgPATH;
-            removepkg &name;
+            removepkg &plgPATH;/&plgNAME;.txz
+            # 正常情况下下面这个目录，上面的 removepkg 就给清理掉了
+            rm -rf /usr/local/emhttp/plugins/&name;
+
             rm -f /boot/config/plugins/community.applications/proxy.cfg
-            sed -i "/\/usr\/local\/sbin\/emhttp &/c\/usr\/local\/sbin\/emhttp &" /boot/config/go
+            sed -i "/\/usr\/local\/sbin\/emhttp &amp;/c\/usr\/local\/sbin\/emhttp &amp;" /boot/config/go
             echo ""
             echo "-----------------------------------------------------------"
             echo " &name; 已经卸载成功."
