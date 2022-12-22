@@ -21,7 +21,8 @@ if command -v makepkg > /dev/null; then
 
     # Move to directory containing files and folders going into the package
     cd "$2"
-
+    echo "Changing CRLF to LF..."
+    find . -name "*.sh" -o -name "*.page" -o -name "*.md" -o -name "*.php" -o -name "*.txt" | xargs sed -i "s/\r$//"
     echo "Setting permission..."
     find . -type d -print0 | xargs -0 chmod 755 
     find . -type f -print0 | xargs -0 chmod 644

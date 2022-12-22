@@ -3,7 +3,7 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name        "proxy.editor">
   <!ENTITY author      "ludoux">
-  <!ENTITY version     "2022.12.22d">
+  <!ENTITY version     "2022.12.22e">
   <!ENTITY minosver    "6.10.0">
   <!ENTITY launch      "Settings/ProxyEditor">
   <!ENTITY branch      "master">
@@ -14,7 +14,7 @@
   <!ENTITY pluginURL   "&gitURL;/&name;.plg">
   <!ENTITY plgPATH     "/boot/config/plugins/&name;">
   <!ENTITY plgNAME     "&name;-&version;">
-  <!ENTITY MD5         "3f0c05507a328eff342e2f9498a74f67">
+  <!ENTITY MD5         "0a6ea8b86987ef674f79a679c1b022b3">
 ]>
 
 <PLUGIN  name="&name;"
@@ -28,6 +28,9 @@
 
     <CHANGES>
     ##&name; 渠道: &gitCHANNEL;
+
+    ###2022.12.22
+    d版的换行符有问题，e版修正了。
 
     ###2022.12.22
     d版修改了一些描述，添加了论坛文地址。为上论坛做准备
