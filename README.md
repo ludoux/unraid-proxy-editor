@@ -6,6 +6,8 @@ Unraid 论坛文章：[Proxy Editor | 提供可视化页面，方便快捷设置
 
 # 安装
 
+目前要求 Unraid 系统版本 >= 6.10.0
+
 本插件托管在 Gitee 与 GitHub 上。若从 Gitee 平台的 plg 文件安装，Unraid 将会使用 Gitee 平台的链接来检查更新并下载插件，GitHub 同理。
 
 作者努力保证双平台的插件均保持最新的版本，若有意外那么 GitHub 应该会是最新的。
@@ -14,10 +16,12 @@ Unraid 论坛文章：[Proxy Editor | 提供可视化页面，方便快捷设置
 
 ## GitHub 平台（肯定最新）
 项目地址: https://github.com/ludoux/unraid-proxy-editor
+
 安装链接： `https://raw.githubusercontent.com/ludoux/unraid-proxy-editor/master/proxy.editor.plg`
 
 ## Gitee 平台（速度更快）
 项目地址: https://gitee.com/ludoux/unraid-proxy-editor
+
 安装链接： `https://gitee.com/ludoux/unraid-proxy-editor/raw/master/proxy.editor.plg`
 
 # License

@@ -58,7 +58,7 @@ CA代理<span style="color:red;">(应用后立刻生效)</span>: 启用的配置
   <?=mk_option($cfg['ca_active_config'], "3", "走代理: CA配置文件3") ?>
   </select>
 
-> 选择 CA 的代理配置文件。插件会修改 /boot/config/plugins/community.applications/proxy.cfg<br>Apps 页面的获取 appfeed（获取应用程序列表详情等）会使用此代理
+> 选择 CA 的代理配置文件。插件会修改 /boot/config/plugins/community.applications/proxy.cfg<br>Apps 页面的获取 appfeed（应用程序列表详情等）会使用此代理
 
 系统级代理<span style="color:red;">(应用后需重启生效)</span>: 启用的配置文件:
 : <select name="sys_active_config">
