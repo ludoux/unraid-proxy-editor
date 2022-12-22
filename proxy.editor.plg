@@ -1,30 +1,36 @@
 <?xml version='1.0' standalone='yes'?>
 
 <!DOCTYPE PLUGIN [
-  <!ENTITY name      "proxy.editor">
-  <!ENTITY author    "ludoux">
-  <!ENTITY version   "2022.12.22c">
-  <!ENTITY minosver      "6.10.0">
-  <!ENTITY launch    "Settings/ProxyEditor">
-  <!ENTITY branch    "master">
-  <!ENTITY gitURL    "https://raw.githubusercontent.com/ludoux/unraid-proxy-editor/&branch;">
-  <!ENTITY pluginURL "&gitURL;/&name;.plg">
-  <!ENTITY plgPATH   "/boot/config/plugins/&name;">
-  <!ENTITY plgNAME   "&name;-&version;">
-  <!ENTITY MD5       "375d5f84a9f91955fb0aa06f09ae2da6">
+  <!ENTITY name        "proxy.editor">
+  <!ENTITY author      "ludoux">
+  <!ENTITY version     "2022.12.22c">
+  <!ENTITY minosver    "6.10.0">
+  <!ENTITY launch      "Settings/ProxyEditor">
+  <!ENTITY branch      "master">
+  <!ENTITY githubURL   "https://raw.githubusercontent.com/ludoux/unraid-proxy-editor/&branch;">
+  <!ENTITY giteeURL    "https://gitee.com/ludoux/unraid-proxy-editor/raw/&branch;">
+  <!ENTITY gitCHANNEL  "GitHub">
+  <!ENTITY gitURL      "&githubURL;">
+  <!ENTITY pluginURL   "&gitURL;/&name;.plg">
+  <!ENTITY plgPATH     "/boot/config/plugins/&name;">
+  <!ENTITY plgNAME     "&name;-&version;">
+  <!ENTITY MD5         "375d5f84a9f91955fb0aa06f09ae2da6">
 ]>
 
 <PLUGIN  name="&name;"
          author="&author;"
          version="&version;"
          pluginURL="&pluginURL;"
-         support="https://forums.unraid.net/topic/74525-plugin-network-stat/"
+         support="https://forums.unraid.net/"
          launch="&launch;"
          icon="paper-plane"
          min="&minosver;">
 
     <CHANGES>
-    ##&name;
+    ##&name; 渠道: &gitCHANNEL;
+
+    ###2022.12.22
+    修订 bug. 今日c版已经可以正常安装使用了
 
     ###2022.12.21 - Initial Release
     打包第一版
@@ -48,9 +54,10 @@
         <INLINE>
             echo ""
             echo "-----------------------------------------------------------"
-            echo " &name; v &version; 安装成功。在 设置-用户实用程序 下即可访问此插件"
+            echo " &name; v&version; 渠道: &gitCHANNEL; 安装成功。在 设置-用户实用程序 下即可访问此插件"
             echo " 请注意，未来插件卸载时会将本插件和系统代理配置信息清理掉，即卸载后便恢复直连。"
             echo " 插件主页面的【帮助/反馈/关于/捐赠】内有论坛链接，建议初次上手用户前去阅读"
+            echo " 有问题也可以跟贴留言。假如插件帮助到你也欢迎扫码捐赠 ^_^"
             echo " Copyright 2022, ludoux"
             echo "-----------------------------------------------------------"
             echo ""
