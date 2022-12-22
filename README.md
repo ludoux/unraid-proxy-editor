@@ -1,5 +1,24 @@
 # unraid-proxy-editor
 
+Unraid 论坛文章：[Proxy Editor | 提供可视化页面，方便快捷设置、切换代理](https://forums.unraid.net/topic/132645-proxy-editor-%E6%8F%90%E4%BE%9B%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B5%E9%9D%A2%EF%BC%8C%E6%96%B9%E4%BE%BF%E5%BF%AB%E6%8D%B7%E8%AE%BE%E7%BD%AE%E3%80%81%E5%88%87%E6%8D%A2%E4%BB%A3%E7%90%86/) ，使用说明、常见问答请移步查看。
+
+有 bug 请去 GitHub 项目下开 issue 方便跟进。论坛仅答疑，Gitee 项目网页基本不看……
+
+# 安装
+
+本插件托管在 Gitee 与 GitHub 上。若从 Gitee 平台的 plg 文件安装，Unraid 将会使用 Gitee 平台的链接来检查更新并下载插件，GitHub 同理。
+
+作者努力保证双平台的插件均保持最新的版本，若有意外那么 GitHub 应该会是最新的。
+
+在 Unraid Web 管理页面上，打开 “插件”->“安装插件”，粘贴下列对应平台的 .plg 文件 Url ，点击安装按钮后，会有一个弹窗显示安装进度。
+
+## GitHub 平台（肯定最新）
+项目地址: https://github.com/ludoux/unraid-proxy-editor
+安装链接： `https://raw.githubusercontent.com/ludoux/unraid-proxy-editor/master/proxy.editor.plg`
+
+## Gitee 平台（速度更快）
+项目地址: https://gitee.com/ludoux/unraid-proxy-editor
+安装链接： `https://gitee.com/ludoux/unraid-proxy-editor/raw/master/proxy.editor.plg`
 
 # License
 

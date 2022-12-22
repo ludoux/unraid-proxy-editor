@@ -44,7 +44,7 @@ $cfg = parse_plugin_cfg('proxy.editor');
 	});  
     })
 </script>
-<a class='about' href='https://forums.unraid.net/' target='_blank'>帮助/反馈/关于/捐赠</a>
+<a class='about' href='https://forums.unraid.net/topic/132645-proxy-editor-%E6%8F%90%E4%BE%9B%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B5%E9%9D%A2%EF%BC%8C%E6%96%B9%E4%BE%BF%E5%BF%AB%E6%8D%B7%E8%AE%BE%E7%BD%AE%E3%80%81%E5%88%87%E6%8D%A2%E4%BB%A3%E7%90%86/' target='_blank'>帮助/反馈/关于/捐赠</a>
 <!-- update.php is found at /usr/local/emhttp/update.php -->
 <form markdown="1" name="active_config" method="POST" action="/update.php"  target="progressFrame">
 <input type="hidden" name="#file" value="proxy.editor/proxy.editor.cfg">
