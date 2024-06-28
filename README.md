@@ -1,3 +1,5 @@
+# Unraid 7.0 官方已支持 `Outgoing Proxy Manager` 功能，本插件不再推荐使用。
+
 # unraid-proxy-editor
 
 Unraid 论坛文章：[Proxy Editor | 提供可视化页面，方便快捷设置、切换代理](https://forums.unraid.net/topic/132645-proxy-editor-%E6%8F%90%E4%BE%9B%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B5%E9%9D%A2%EF%BC%8C%E6%96%B9%E4%BE%BF%E5%BF%AB%E6%8D%B7%E8%AE%BE%E7%BD%AE%E3%80%81%E5%88%87%E6%8D%A2%E4%BB%A3%E7%90%86/) ，使用说明、常见问答请移步查看。
